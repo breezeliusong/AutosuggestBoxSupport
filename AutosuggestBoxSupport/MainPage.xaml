@@ -253,7 +253,7 @@
             </Setter>
         </Style>-->
 
-
+        <!--  set the AutoSuggestBoxTextBoxStyle disabled background as red  -->
         <!--  Style of the textbox in autosuggestbox  -->
         <Style x:Key="AutoSuggestBoxTextBoxStyle" TargetType="TextBox">
             <Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinWidth}" />
@@ -488,6 +488,7 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundElement" Storyboard.TargetProperty="Background">
+                                                <!--  set background as red  -->
                                                 <DiscreteObjectKeyFrame KeyTime="0" Value="Red" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
@@ -619,7 +620,7 @@
 
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <AutoSuggestBox
             Width="200"
@@ -627,7 +628,103 @@
             PlaceholderText="Search"
             QueryIcon="Find"
             QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+            Style="{StaticResource MyAutoSuggestBoxStyle}"
             SuggestionChosen="AutoSuggestBox_SuggestionChosen"
             TextChanged="AutoSuggestBox_TextChanged" />
-    </Grid>
+
+        <!--<AutoSuggestBox
+            Name="SearchtextAutoSuggestBox"
+            QuerySubmitted="SearchtextAutoSuggestBox_QuerySubmitted"
+            SuggestionChosen="SearchtextAutoSuggestBox_SuggestionChosen"
+            TextChanged="SearchtextAutoSuggestBox_TextChanged">
+
+            <AutoSuggestBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            Text="{Binding}" />
+                        <Button
+                            Name="EditSuggestionButton"
+                            Grid.Column="1"
+                            Click="EditSuggestionButton_Click"
+                            ClickMode="Press"
+                            Content="hello"/>
+                    </Grid>
+                </DataTemplate>
+            </AutoSuggestBox.ItemTemplate>
+
+            <AutoSuggestBox.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </AutoSuggestBox.ItemContainerStyle>
+        </AutoSuggestBox>-->
+
+        <!--<AutoSuggestBox
+            Name="SearchtextAutoSuggestBox"
+            QuerySubmitted="SearchtextAutoSuggestBox_QuerySubmitted"
+            SuggestionChosen="SearchtextAutoSuggestBox_SuggestionChosen"
+            TextChanged="SearchtextAutoSuggestBox_TextChanged">
+            <AutoSuggestBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+                        <TextBlock
+                            Width="100"
+                            HorizontalAlignment="Left"
+                            Text="{Binding}" />
+                        <Button
+                            Name="EditSuggestionButton"
+                            Width="100"
+                            HorizontalAlignment="Center"
+                            Background="Red"
+                            Click="EditSuggestionButton_Click"
+                            Content="&#xE104;"
+                            FontFamily="Segoe MDL2 Assets" />
+                    </StackPanel>
+                </DataTemplate>
+            </AutoSuggestBox.ItemTemplate>
+        </AutoSuggestBox>-->
+        <!--my test AutosuggestBox-->
+            <AutoSuggestBox x:Name="autoSuggestBox"
+                        PlaceholderText="Type a control name"
+                        TextChanged="AutoSuggestBox_TextChanged" 
+                        QueryIcon="Find" 
+                        QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+                        SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+                        Width="300"
+                        HorizontalAlignment="Stretch">
+                <AutoSuggestBox.ItemTemplate>
+                    <DataTemplate x:DataType="local:SampleSuggest">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind Path=Index}"/>
+                            <TextBlock Margin="10,0,0,0" Text="{x:Bind Path=Value}"/>
+                            <Button
+                                Name="EditSuggestionButton"
+                                Width="100"
+                                HorizontalAlignment="Center"
+                                Background="Red"
+                                Content="&#xE104;"
+                                ClickMode="Press"
+                                Click="EditSuggestionButton_Click"
+                                FontFamily="Segoe MDL2 Assets" />
+                            
+                        </StackPanel>
+                    </DataTemplate>
+                </AutoSuggestBox.ItemTemplate>
+                
+                <!--<AutoSuggestBox.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </AutoSuggestBox.ItemContainerStyle>-->
+            </AutoSuggestBox>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="10"/>
+
+    </StackPanel>
 </Page>
