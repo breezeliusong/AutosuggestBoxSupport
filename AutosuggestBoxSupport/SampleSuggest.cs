@@ -10,5 +10,6 @@ namespace AutosuggestBoxSupport
     {
         public int Index { set; get; }
         public String Value { set; get; }
+        public Uri Location { set; get; }
     }
 }

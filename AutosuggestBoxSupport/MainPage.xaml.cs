@@ -77,8 +77,8 @@ namespace AutosuggestBoxSupport
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             suggestions.Clear();
-            suggestions.Add(new SampleSuggest { Index=1,Value=sender.Text});
-            suggestions.Add(new SampleSuggest { Index = 2, Value = sender.Text });
+            suggestions.Add(new SampleSuggest { Index=1,Value=sender.Text, Location=new Uri("ms-appx:///Assets/pic.png")});
+            suggestions.Add(new SampleSuggest { Index = 2, Value = sender.Text, Location = new Uri("ms-appx:///Assets/pictures.png") });
             sender.ItemsSource = suggestions;
         }
 
@@ -88,6 +88,11 @@ namespace AutosuggestBoxSupport
             if (suggest == null)
                 return;
             sender.Text = suggest.Value;
+        }
+
+        private void GetContent(object sender, RoutedEventArgs e)
+        {
+            var text = MyTextBox.Text;
         }
     }
 }

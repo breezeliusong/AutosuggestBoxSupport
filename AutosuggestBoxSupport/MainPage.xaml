@@ -690,41 +690,53 @@
                 </DataTemplate>
             </AutoSuggestBox.ItemTemplate>
         </AutoSuggestBox>-->
-        <!--my test AutosuggestBox-->
-            <AutoSuggestBox x:Name="autoSuggestBox"
-                        PlaceholderText="Type a control name"
-                        TextChanged="AutoSuggestBox_TextChanged" 
-                        QueryIcon="Find" 
-                        QuerySubmitted="AutoSuggestBox_QuerySubmitted"
-                        SuggestionChosen="AutoSuggestBox_SuggestionChosen"
-                        Width="300"
-                        HorizontalAlignment="Stretch">
-                <AutoSuggestBox.ItemTemplate>
-                    <DataTemplate x:DataType="local:SampleSuggest">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Bind Path=Index}"/>
-                            <TextBlock Margin="10,0,0,0" Text="{x:Bind Path=Value}"/>
-                            <Button
-                                Name="EditSuggestionButton"
-                                Width="100"
-                                HorizontalAlignment="Center"
-                                Background="Red"
-                                Content="&#xE104;"
-                                ClickMode="Press"
-                                Click="EditSuggestionButton_Click"
-                                FontFamily="Segoe MDL2 Assets" />
-                            
-                        </StackPanel>
-                    </DataTemplate>
-                </AutoSuggestBox.ItemTemplate>
-                
-                <!--<AutoSuggestBox.ItemContainerStyle>
+        <!--  my test AutosuggestBox  -->
+        <AutoSuggestBox
+            x:Name="autoSuggestBox"
+            Width="300"
+            HorizontalAlignment="Stretch"
+            PlaceholderText="Type a control name"
+            QueryIcon="Find"
+            QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+            SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+            TextChanged="AutoSuggestBox_TextChanged">
+            <AutoSuggestBox.ItemTemplate>
+                <DataTemplate x:DataType="local:SampleSuggest">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Bind Path=Index}" />
+                        <TextBlock Margin="10,0,0,0" Text="{x:Bind Path=Value}" />
+                        <Viewbox>
+                            <Image Width="20" Height="20">
+                                <Image.Source>
+                                    <BitmapImage CreateOptions="IgnoreImageCache" UriSource="{x:Bind Location}" />
+                                </Image.Source>
+                            </Image>
+                        </Viewbox>
+                        <Button
+                            Name="EditSuggestionButton"
+                            Width="100"
+                            HorizontalAlignment="Center"
+                            Background="Red"
+                            Click="EditSuggestionButton_Click"
+                            ClickMode="Press"
+                            Content="&#xE104;"
+                            FontFamily="Segoe MDL2 Assets" />
+                    </StackPanel>
+                </DataTemplate>
+            </AutoSuggestBox.ItemTemplate>
+
+            <!--<AutoSuggestBox.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </AutoSuggestBox.ItemContainerStyle>-->
-            </AutoSuggestBox>
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="10"/>
+        </AutoSuggestBox>
+        <TextBlock
+            x:Name="textBlock"
+            Margin="10"
+            HorizontalAlignment="Center" />
+        <TextBox Width="100" InputScope="Number" Name="MyTextBox" />
+        <Button Content="get content" Click="GetContent"/>
 
     </StackPanel>
 </Page>
